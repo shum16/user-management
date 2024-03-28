@@ -1,5 +1,5 @@
 {
-	"name": "shum16/module-user-management",
+	"name": "agapov1983/module-user-management",
 	"description": "User with improved RBAC",
 	"autoload": {
 		"psr-4": {
