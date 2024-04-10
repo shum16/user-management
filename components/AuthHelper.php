@@ -112,7 +112,7 @@ class AuthHelper
 	{
 		touch(static::getPermissionsLastModFile());
 	}
-	
+
 	/**
 	 * Return route without baseUrl and start it with slash
 	 *
@@ -140,7 +140,7 @@ class AuthHelper
 		// Check if $route has been passed as array or as string with params (or without)
 		if ( !is_array($route) )
 		{
-			$route = explode('?', $route);
+			$route = explode('?', $route ?? '');
 		}
 
 		$routeAsString = $route[0];
@@ -358,4 +358,4 @@ class AuthHelper
 			}
 		}
 	}
-} 
+}

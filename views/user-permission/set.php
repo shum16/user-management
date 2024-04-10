@@ -29,13 +29,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="row">
 	<div class="col-sm-4">
-		<div class="panel panel-default">
-			<div class="panel-heading">
+		<div class="card">
+			<div class="card-header">
 				<strong>
-					<span class="glyphicon glyphicon-th"></span> <?= UserManagementModule::t('back', 'Roles') ?>
+					<span class="fa fa-th"></span> <?= UserManagementModule::t('back', 'Roles') ?>
 				</strong>
 			</div>
-			<div class="panel-body">
+			<div class="card-body">
 
 				<?= Html::beginForm(['set-roles', 'id'=>$user->id]) ?>
 
@@ -55,7 +55,7 @@ $this->params['breadcrumbs'][] = $this->title;
 					</label>
 
 					<?= GhostHtml::a(
-						'<span class="glyphicon glyphicon-edit"></span>',
+						'<span class="fa fa-edit"></span>',
 						['/user-management/role/view', 'id'=>$aRole['name']],
 						['target'=>'_blank']
 					) ?>
@@ -67,7 +67,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				<?php if ( Yii::$app->user->isSuperadmin OR Yii::$app->user->id != $user->id ): ?>
 
 					<?= Html::submitButton(
-						'<span class="glyphicon glyphicon-ok"></span> ' . UserManagementModule::t('back', 'Save'),
+						'<span class="fa fa-check"></span> ' . UserManagementModule::t('back', 'Save'),
 						['class'=>'btn btn-primary btn-sm']
 					) ?>
 				<?php else: ?>
@@ -83,13 +83,13 @@ $this->params['breadcrumbs'][] = $this->title;
 	</div>
 
 	<div class="col-sm-8">
-		<div class="panel panel-default">
-			<div class="panel-heading">
+		<div class="card">
+			<div class="card-header">
 				<strong>
-					<span class="glyphicon glyphicon-th"></span> <?= UserManagementModule::t('back', 'Permissions') ?>
+					<span class="fa fa-th"></span> <?= UserManagementModule::t('back', 'Permissions') ?>
 				</strong>
 			</div>
-			<div class="panel-body">
+			<div class="card-body">
 
 				<div class="row">
 					<?php foreach ($permissionsByGroup as $groupName => $permissions): ?>
@@ -104,7 +104,7 @@ $this->params['breadcrumbs'][] = $this->title;
 											<?= $permission->description ?>
 
 											<?= GhostHtml::a(
-												'<span class="glyphicon glyphicon-edit"></span>',
+												'<span class="fa fa-edit"></span>',
 												['/user-management/permission/view', 'id'=>$permission->name],
 												['target'=>'_blank']
 											) ?>

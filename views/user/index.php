@@ -11,7 +11,7 @@ use yii\widgets\Pjax;
 use webvimark\extensions\GridBulkActions\GridBulkActions;
 use webvimark\extensions\GridPageSize\GridPageSize;
 use yii\grid\GridView;
-
+use webvimark\modules\UserManagement\components\CssHelper;
 /**
  * @var yii\web\View $this
  * @var yii\data\ActiveDataProvider $dataProvider
@@ -25,21 +25,21 @@ $this->params['breadcrumbs'][] = $this->title;
 
 	<h2 class="lte-hide-title"><?= $this->title ?></h2>
 
-	<div class="panel panel-default">
-		<div class="panel-body">
+	<div class="card">
+		<div class="card-body">
 
 			<div class="row">
 				<div class="col-sm-6">
 					<p>
 						<?= GhostHtml::a(
-							'<span class="glyphicon glyphicon-plus-sign"></span> ' . UserManagementModule::t('back', 'Create'),
+							'<span class="fa fa-plus-circle"></span> ' . UserManagementModule::t('back', 'Create'),
 							['/user-management/user/create'],
 							['class' => 'btn btn-success']
 						) ?>
 					</p>
 				</div>
 
-				<div class="col-sm-6 text-right">
+				<div class="col-sm-6 d-flex justify-content-end clear-filter">
 					<?= GridPageSize::widget(['pjaxId'=>'user-grid-pjax']) ?>
 				</div>
 			</div>
@@ -59,7 +59,7 @@ $this->params['breadcrumbs'][] = $this->title;
 					'firstPageLabel'=>'<<',
 				],
 				'filterModel' => $searchModel,
-				'layout'=>'{items}<div class="row"><div class="col-sm-8">{pager}</div><div class="col-sm-4 text-right">{summary}'.GridBulkActions::widget([
+				'layout'=>'{items}<div class="row"><div class="col-sm-10">{pager}</div><div class="col-sm-2 d-flex flex-column justify-content-end actions-filter">{summary}'.GridBulkActions::widget([
 						'gridId'=>'user-grid',
 						'actions'=>[
 							Url::to(['bulk-activate', 'attribute'=>'status'])=>GridBulkActions::t('app', 'Activate'),
@@ -76,7 +76,7 @@ $this->params['breadcrumbs'][] = $this->title;
 						'class'=>'webvimark\components\StatusColumn',
 						'attribute'=>'superadmin',
 						'visible'=>Yii::$app->user->isSuperadmin,
-					],
+                  ],
 
 					[
 						'attribute'=>'username',
@@ -122,7 +122,7 @@ $this->params['breadcrumbs'][] = $this->title;
 						'format'=>'raw',
 						'visible'=>User::canRoute('/user-management/user-permission/set'),
 						'options'=>[
-							'width'=>'10px',
+							'width'=>'130px',
 						],
 					],
 					[
@@ -130,11 +130,11 @@ $this->params['breadcrumbs'][] = $this->title;
 								return GhostHtml::a(
 									UserManagementModule::t('back', 'Change password'),
 									['change-password', 'id'=>$model->id],
-									['class'=>'btn btn-sm btn-default', 'data-pjax'=>0]);
+									['class'=>'btn btn-sm btn-light', 'data-pjax'=>0]);
 							},
 						'format'=>'raw',
 						'options'=>[
-							'width'=>'10px',
+							'width'=>'150px',
 						],
 					],
 					[
@@ -149,7 +149,7 @@ $this->params['breadcrumbs'][] = $this->title;
 					['class' => 'yii\grid\CheckboxColumn', 'options'=>['style'=>'width:10px'] ],
 					[
 						'class' => 'yii\grid\ActionColumn',
-						'contentOptions'=>['style'=>'width:70px; text-align:center;'],
+						'contentOptions'=>['style'=>'width:100px; text-align:center;'],
 					],
 				],
 			]); ?>
@@ -159,3 +159,7 @@ $this->params['breadcrumbs'][] = $this->title;
 		</div>
 	</div>
 </div>
+
+<?php
+$this->registerCss(CssHelper::renderGridCss());
+?>
