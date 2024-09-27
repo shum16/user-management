@@ -36,13 +36,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="row">
 	<div class="col-sm-4">
-		<div class="panel panel-default">
-			<div class="panel-heading">
+		<div class="card">
+			<div class="card-header">
 				<strong>
-					<span class="glyphicon glyphicon-th"></span> <?= UserManagementModule::t('back', 'Child roles') ?>
+					<span class="fa fa-th"></span> <?= UserManagementModule::t('back', 'Child roles') ?>
 				</strong>
 			</div>
-			<div class="panel-body">
+			<div class="card-body">
 				<?= Html::beginForm(['set-child-roles', 'id'=>$role->name]) ?>
 
 				<?php foreach ($allRoles as $aRole): ?>
@@ -53,7 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
 					</label>
 
 					<?= GhostHtml::a(
-						'<span class="glyphicon glyphicon-edit"></span>',
+						'<span class="fa fa-edit"></span>',
 						['/user-management/role/view', 'id'=>$aRole['name']],
 						['target'=>'_blank']
 					) ?>
@@ -63,7 +63,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 				<hr/>
 				<?= Html::submitButton(
-					'<span class="glyphicon glyphicon-ok"></span> ' . UserManagementModule::t('back', 'Save'),
+					'<span class="fa fa-check"></span> ' . UserManagementModule::t('back', 'Save'),
 					['class'=>'btn btn-primary btn-sm']
 				) ?>
 
@@ -73,13 +73,13 @@ $this->params['breadcrumbs'][] = $this->title;
 	</div>
 
 	<div class="col-sm-8">
-		<div class="panel panel-default">
-			<div class="panel-heading">
+		<div class="card">
+			<div class="card-header">
 				<strong>
-					<span class="glyphicon glyphicon-th"></span> <?= UserManagementModule::t('back', 'Permissions') ?>
+					<span class="fa fa-th"></span> <?= UserManagementModule::t('back', 'Permissions') ?>
 				</strong>
 			</div>
-			<div class="panel-body">
+			<div class="card-body">
 				<?= Html::beginForm(['set-child-permissions', 'id'=>$role->name]) ?>
 
 				<div class="row">
@@ -96,7 +96,7 @@ $this->params['breadcrumbs'][] = $this->title;
 									</label>
 
 									<?= GhostHtml::a(
-										'<span class="glyphicon glyphicon-edit"></span>',
+										'<span class="fa fa-edit"></span>',
 										['/user-management/permission/view', 'id'=>$permission->name],
 										['target'=>'_blank']
 									) ?>
@@ -113,7 +113,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 				<hr/>
 				<?= Html::submitButton(
-					'<span class="glyphicon glyphicon-ok"></span> ' . UserManagementModule::t('back', 'Save'),
+					'<span class="fa fa-check"></span> ' . UserManagementModule::t('back', 'Save'),
 					['class'=>'btn btn-primary btn-sm']
 				) ?>
 

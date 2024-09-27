@@ -10,6 +10,7 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\Pjax;
+use webvimark\modules\UserManagement\components\CssHelper;
 
 /**
  * @var yii\data\ActiveDataProvider $dataProvider
@@ -23,20 +24,20 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <h2 class="lte-hide-title"><?= $this->title ?></h2>
 
-<div class="panel panel-default">
-	<div class="panel-body">
+<div class="card">
+	<div class="card-body">
 		<div class="row">
 			<div class="col-sm-6">
 				<p>
 					<?= GhostHtml::a(
-						'<span class="glyphicon glyphicon-plus-sign"></span> ' . UserManagementModule::t('back', 'Create'),
+						'<span class="fa fa-plus-circle"></span> ' . UserManagementModule::t('back', 'Create'),
 						['create'],
 						['class' => 'btn btn-success']
 					) ?>
 				</p>
 			</div>
 
-			<div class="col-sm-6 text-right">
+			<div class="col-sm-6 d-flex justify-content-end clear-filter">
 				<?= GridPageSize::widget(['pjaxId'=>'permission-grid-pjax']) ?>
 			</div>
 		</div>
@@ -55,7 +56,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				'firstPageLabel'=>'<<',
 			],
 			'filterModel' => $searchModel,
-			'layout'=>'{items}<div class="row"><div class="col-sm-8">{pager}</div><div class="col-sm-4 text-right">{summary}'.GridBulkActions::widget([
+			'layout'=>'{items}<div class="row"><div class="col-sm-10">{pager}</div><div class="col-sm-2 d-flex flex-column justify-content-end actions-filter">{summary}'.GridBulkActions::widget([
 						'gridId'=>'permission-grid',
 						'actions'=>[Url::to(['bulk-delete'])=>GridBulkActions::t('app', 'Delete'),],
 						]).'</div></div>',
@@ -91,7 +92,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				['class' => 'yii\grid\CheckboxColumn', 'options'=>['style'=>'width:10px'] ],
 				[
 					'class' => 'yii\grid\ActionColumn',
-					'contentOptions'=>['style'=>'width:70px; text-align:center;'],
+					'contentOptions'=>['style'=>'width:100px; text-align:center;'],
 				],
 			],
 		]); ?>
@@ -99,3 +100,6 @@ $this->params['breadcrumbs'][] = $this->title;
 		<?php Pjax::end() ?>
 	</div>
 </div>
+<?php
+$this->registerCss(CssHelper::renderGridCss());
+?>

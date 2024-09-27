@@ -35,13 +35,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="row">
 	<div class="col-sm-6">
-		<div class="panel panel-default">
-			<div class="panel-heading">
+		<div class="card">
+			<div class="card-header">
 				<strong>
-					<span class="glyphicon glyphicon-th"></span> <?= UserManagementModule::t('back', 'Child permissions') ?>
+                    <span class="fa fa-th"></span> <?= UserManagementModule::t('back', 'Child permissions') ?>
 				</strong>
 			</div>
-			<div class="panel-body">
+			<div class="card-body">
 
 				<?= Html::beginForm(['set-child-permissions', 'id'=>$item->name]) ?>
 
@@ -59,7 +59,7 @@ $this->params['breadcrumbs'][] = $this->title;
 									</label>
 
 									<?= GhostHtml::a(
-										'<span class="glyphicon glyphicon-edit"></span>',
+										'<span class="fa fa-edit"></span>',
 										['view', 'id'=>$permission->name],
 										['target'=>'_blank']
 									) ?>
@@ -77,7 +77,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 				<hr/>
 				<?= Html::submitButton(
-					'<span class="glyphicon glyphicon-ok"></span> ' . UserManagementModule::t('back', 'Save'),
+					'<span class="fa fa-check"></span> ' . UserManagementModule::t('back', 'Save'),
 					['class'=>'btn btn-primary btn-sm']
 				) ?>
 
@@ -87,16 +87,16 @@ $this->params['breadcrumbs'][] = $this->title;
 	</div>
 
 	<div class="col-sm-6">
-		<div class="panel panel-default">
-			<div class="panel-heading">
+		<div class="card panel-default">
+			<div class="card-header">
 				<strong>
-					<span class="glyphicon glyphicon-th"></span> Routes
+					<span class="fa fa-th"></span> Routes
 
 					<?= Html::a(
 						UserManagementModule::t('back', 'Refresh routes (and delete unused)'),
 						['refresh-routes', 'id'=>$item->name, 'deleteUnused'=>1],
 						[
-							'class' => 'btn btn-default btn-sm pull-right',
+							'class' => 'btn btn-light btn-sm  float-end',
 							'style'=>'margin-top:-5px; text-transform:none;',
 							'data-confirm'=>UserManagementModule::t('back', 'Routes that are not exists in this application will be deleted. Do not recommended for application with "advanced" structure, because frontend and backend have they own set of routes.'),
 						]
@@ -106,7 +106,7 @@ $this->params['breadcrumbs'][] = $this->title;
 						UserManagementModule::t('back', 'Refresh routes'),
 						['refresh-routes', 'id'=>$item->name],
 						[
-							'class' => 'btn btn-default btn-sm pull-right',
+							'class' => 'btn btn-light btn-sm float-end',
 							'style'=>'margin-top:-5px; text-transform:none;',
 						]
 					) ?>
@@ -115,14 +115,14 @@ $this->params['breadcrumbs'][] = $this->title;
 				</strong>
 			</div>
 
-			<div class="panel-body">
+			<div class="card-body">
 
 				<?= Html::beginForm(['set-child-routes', 'id'=>$item->name]) ?>
 
 				<div class="row">
 					<div class="col-sm-3">
 						<?= Html::submitButton(
-							'<span class="glyphicon glyphicon-ok"></span> ' . UserManagementModule::t('back', 'Save'),
+							'<span class="fa fa-check"></span> ' . UserManagementModule::t('back', 'Save'),
 							['class'=>'btn btn-primary btn-sm']
 						) ?>
 					</div>
@@ -132,10 +132,10 @@ $this->params['breadcrumbs'][] = $this->title;
 					</div>
 
 					<div class="col-sm-3 text-right">
-						<span id="show-only-selected-routes" class="btn btn-default btn-sm">
+						<span id="show-only-selected-routes" class="btn btn-light btn-sm">
 							<i class="fa fa-minus"></i> <?= UserManagementModule::t('back', 'Show only selected'); ?>
 						</span>
-						<span id="show-all-routes" class="btn btn-default btn-sm hide">
+						<span id="show-all-routes" class="btn btn-light btn-sm d-none">
 							<i class="fa fa-plus"></i> <?= UserManagementModule::t('back', 'Show all'); ?>
 						</span>
 
@@ -164,7 +164,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 				<hr/>
 				<?= Html::submitButton(
-					'<span class="glyphicon glyphicon-ok"></span> ' . UserManagementModule::t('back', 'Save'),
+					'<span class="fa fa-check"></span> ' . UserManagementModule::t('back', 'Save'),
 					['class'=>'btn btn-primary btn-sm']
 				) ?>
 
@@ -185,8 +185,8 @@ var routeText = $('.route-text');
 var backgroundColor = '#D6FFDE';
 
 function showAllRoutesBack() {
-	$('#routes-list').find('.hide').each(function(){
-		$(this).removeClass('hide');
+	$('#routes-list').find('.d-none').each(function(){
+		$(this).removeClass('d-none');
 	});
 }
 
@@ -233,24 +233,24 @@ routeCheckboxes.on('change', function(){
 
 // Hide on not selected routes
 $('#show-only-selected-routes').on('click', function(){
-	$(this).addClass('hide');
-	$('#show-all-routes').removeClass('hide');
+	$(this).addClass('d-none');
+	$('#show-all-routes').removeClass('d-none');
 
 	routeCheckboxes.each(function(){
 		var _t = $(this);
 
 		if ( ! _t.is(':checked') )
 		{
-			_t.closest('label').addClass('hide');
-			_t.closest('div.separator').addClass('hide');
+			_t.closest('label').addClass('d-none');
+			_t.closest('div.separator').addClass('d-none');
 		}
 	});
 });
 
 // Show all routes back
 $('#show-all-routes').on('click', function(){
-	$(this).addClass('hide');
-	$('#show-only-selected-routes').removeClass('hide');
+	$(this).addClass('d-none');
+	$('#show-only-selected-routes').removeClass('d-none');
 
 	showAllRoutesBack();
 });
